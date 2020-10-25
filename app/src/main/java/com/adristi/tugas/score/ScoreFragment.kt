@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.adristi.tugas.R
 import com.adristi.tugas.databinding.FragmentScoreBinding
+import com.adristi.tugas.title.TitleFragmentDirections
 
 /**
  * Fragment where the final score is shown, after the game is over
@@ -38,6 +40,10 @@ class ScoreFragment : Fragment() {
             .get(ScoreViewModel::class.java)
 
         binding.scoreText.text = viewModel.score.toString()
+
+        binding.playAgainButton.setOnClickListener {
+            findNavController().navigate(ScoreFragmentDirections.actionRestart())
+        }
 
         return binding.root
     }
